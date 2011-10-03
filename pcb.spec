@@ -14,6 +14,7 @@ BuildRequires: bison
 BuildRequires: tk
 BuildRequires: gd-devel
 BuildRequires: imagemagick
+BuildRequires: mesagl-devel
 Requires: m4
 Source0: http://downloads.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 
