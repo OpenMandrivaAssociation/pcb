@@ -15,6 +15,8 @@ BuildRequires: tk
 BuildRequires: gd-devel
 BuildRequires: imagemagick
 BuildRequires: mesagl-devel
+BuildRequires: mesaglu-devel
+BuildRequires: gtkglext-devel
 Requires: m4
 Source0: http://downloads.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 
@@ -31,7 +33,7 @@ tremendously reduce layout time.
 
 %build
 export CFLAGS=`echo %optflags | sed "s/-D_FORTIFY_SOURCE=2 // g" -`
-%configure2_5x \
+%configure2_5x --disable-static \
  --enable-dbus \
  --disable-update-mime-database \
  --disable-update-desktop-database
@@ -42,12 +44,10 @@ export CFLAGS=`echo %optflags | sed "s/-D_FORTIFY_SOURCE=2 // g" -`
 %{__rm} -rf %{buildroot}
 %makeinstall_std
 
-rm -fr %{buildroot}%{_datadir}/mimelnk
+rm -fr %{buildroot}%{_datadir}/mimelnk %{buildroot}%{_includedir}
 
 %find_lang %{name}
 
-%check
-%{make} check
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,6 +58,7 @@ rm -fr %{buildroot}%{_datadir}/mimelnk
 %{_datadir}/applications/%{name}.desktop
 %{_bindir}/*
 %{_datadir}/%{name}/
+%{_datadir}/gEDA/scheme/*
 %{_mandir}/man1/%{name}*
 %{_infodir}/*
 %{_datadir}/icons/hicolor/*/mimetypes/application-x-*
