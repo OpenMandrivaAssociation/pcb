@@ -1,5 +1,5 @@
 Name: pcb
-Version: 20091103
+Version: 20110918
 Release: %mkrel 1
 Summary: An interactive printed circuit board editor
 License: GPLv2
@@ -16,9 +16,6 @@ BuildRequires: gd-devel
 BuildRequires: imagemagick
 Requires: m4
 Source0: http://downloads.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
-Patch0: pcb-0.20091103-tools.patch
-# Upstream's patch
-Patch2: 0001-fix-some-warnings-suggested-by-Stefan-Salewski.patch
 
 %description
 PCB is an interactive printed circuit board editor.
@@ -30,8 +27,6 @@ tremendously reduce layout time.
 
 %prep
 %setup -q -n %{name}-%{version}
-%patch0 -p0 -b .duplicates
-%patch2 -p1 -b .upstream
 
 %build
 export CFLAGS=`echo %optflags | sed "s/-D_FORTIFY_SOURCE=2 // g" -`
@@ -60,7 +55,7 @@ rm -fr %{buildroot}%{_datadir}/mimelnk
 %defattr(-, root, root, -)
 %doc %{_datadir}/doc/%name/*
 %{_datadir}/applications/%{name}.desktop
-%{_bindir}/%{name}
+%{_bindir}/*
 %{_datadir}/%{name}/
 %{_mandir}/man1/%{name}*
 %{_infodir}/*
