@@ -44,7 +44,7 @@ export CFLAGS=`echo %optflags | sed "s/-D_FORTIFY_SOURCE=2 // g" -`
 %{__rm} -rf %{buildroot}
 %makeinstall_std
 
-rm -fr %{buildroot}%{_datadir}/mimelnk %{buildroot}%{_includedir}
+rm -fr %{buildroot}%{_datadir}/mimelnk %{buildroot}%{_includedir} %{buildroot}%{_libdir}/*.a
 
 %find_lang %{name}
 
