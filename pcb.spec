@@ -64,3 +64,17 @@ rm -fr %{buildroot}%{_datadir}/mimelnk %{buildroot}%{_includedir} %{buildroot}%{
 %{_datadir}/icons/hicolor/*/mimetypes/application-x-*
 %{_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_datadir}/mime/packages/pcb.xml
+
+
+%changelog
+* Tue Oct 04 2011 Funda Wang <fwang@mandriva.org> 20110918-1
++ Revision: 702660
+- drop static lib
+- more br fix
+- br gl
+- new version 20110918
+
+* Sun Jul 11 2010 Funda Wang <fwang@mandriva.org> 20091103-1mdv2011.0
++ Revision: 550614
+- import pcb
+
