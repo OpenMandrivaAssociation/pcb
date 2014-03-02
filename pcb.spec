@@ -1,11 +1,10 @@
-Name: pcb
+Name:    pcb
 Version: 20110918
-Release: %mkrel 1
+Release: 2
 Summary: An interactive printed circuit board editor
 License: GPLv2
-Group: Office
-URL: http://pcb.sourceforge.net
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Group:   Office
+URL:     http://pcb.sourceforge.net
 BuildRequires: gtk2-devel
 BuildRequires: intltool
 BuildRequires: dbus-devel
@@ -14,8 +13,8 @@ BuildRequires: bison
 BuildRequires: tk
 BuildRequires: gd-devel
 BuildRequires: imagemagick
-BuildRequires: mesagl-devel
-BuildRequires: mesaglu-devel
+BuildRequires: pkgconfig(gl)
+BuildRequires: pkgconfig(glu)
 BuildRequires: gtkglext-devel
 Requires: m4
 Source0: http://downloads.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
@@ -38,10 +37,9 @@ export CFLAGS=`echo %optflags | sed "s/-D_FORTIFY_SOURCE=2 // g" -`
  --disable-update-mime-database \
  --disable-update-desktop-database
 
-%{make}
+%make
 
 %install
-%{__rm} -rf %{buildroot}
 %makeinstall_std
 
 rm -fr %{buildroot}%{_datadir}/mimelnk %{buildroot}%{_includedir} %{buildroot}%{_libdir}/*.a
@@ -49,12 +47,8 @@ rm -fr %{buildroot}%{_datadir}/mimelnk %{buildroot}%{_includedir} %{buildroot}%{
 %find_lang %{name}
 
 
-%clean
-%{__rm} -rf %{buildroot}
-
 %files -f %{name}.lang
-%defattr(-, root, root, -)
-%doc %{_datadir}/doc/%name/*
+%doc %{_datadir}/doc/%{name}/*
 %{_datadir}/applications/%{name}.desktop
 %{_bindir}/*
 %{_datadir}/%{name}/
@@ -64,17 +58,3 @@ rm -fr %{buildroot}%{_datadir}/mimelnk %{buildroot}%{_includedir} %{buildroot}%{
 %{_datadir}/icons/hicolor/*/mimetypes/application-x-*
 %{_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_datadir}/mime/packages/pcb.xml
-
-
-%changelog
-* Tue Oct 04 2011 Funda Wang <fwang@mandriva.org> 20110918-1
-+ Revision: 702660
-- drop static lib
-- more br fix
-- br gl
-- new version 20110918
-
-* Sun Jul 11 2010 Funda Wang <fwang@mandriva.org> 20091103-1mdv2011.0
-+ Revision: 550614
-- import pcb
-
