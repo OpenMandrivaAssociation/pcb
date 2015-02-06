@@ -1,6 +1,6 @@
 Name:    pcb
 Version: 20110918
-Release: 2
+Release: 3
 Summary: An interactive printed circuit board editor
 License: GPLv2
 Group:   Office
