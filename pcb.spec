@@ -1,23 +1,27 @@
 Name:    pcb
-Version: 20110918
-Release: 3
+Version: 4.3.0
+Release: 1
 Summary: An interactive printed circuit board editor
 License: GPLv2
 Group:   Office
 URL:     http://pcb.sourceforge.net
-BuildRequires: gtk2-devel
+Source0:	https://sourceforge.net/projects/pcb/files/pcb/%{name}-%{version}/%{name}-%{version}.tar.gz
+
+
 BuildRequires: intltool
-BuildRequires: dbus-devel
 BuildRequires: flex
 BuildRequires: bison
 BuildRequires: tk
-BuildRequires: gd-devel
+BuildRequires: pkgconfig(gdlib)
 BuildRequires: imagemagick
-BuildRequires: pkgconfig(gl)
-BuildRequires: pkgconfig(glu)
-BuildRequires: gtkglext-devel
+BuildRequires:	pkgconfig(dbus-1)
+BuildRequires:	pkgconfig(gdlib)
+BuildRequires:	pkgconfig(gl)
+BuildRequires:	pkgconfig(glu)
+BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(gtkglext-1.0)
 Requires: m4
-Source0: http://downloads.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+
 
 %description
 PCB is an interactive printed circuit board editor.
@@ -31,16 +35,19 @@ tremendously reduce layout time.
 %setup -q -n %{name}-%{version}
 
 %build
-export CFLAGS=`echo %optflags | sed "s/-D_FORTIFY_SOURCE=2 // g" -`
-%configure2_5x --disable-static \
- --enable-dbus \
- --disable-update-mime-database \
- --disable-update-desktop-database
+%configure \
+	--disable-dependency-tracking \
+	--with-gui=gtk \
+	--enable-dbus \
+	--enable-toporouter \
+	--disable-update-mime-database \
+	--disable-update-desktop-database \
+	--docdir=%{_docdir}/%{name}-%{version}
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 rm -fr %{buildroot}%{_datadir}/mimelnk %{buildroot}%{_includedir} %{buildroot}%{_libdir}/*.a
 
