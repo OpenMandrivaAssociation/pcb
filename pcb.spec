@@ -4,7 +4,7 @@ Release: 3
 Summary: An interactive printed circuit board editor
 License: GPLv2
 Group:   Office
-URL:     http://pcb.sourceforge.net
+URL:     https://pcb.sourceforge.net
 BuildRequires: gtk2-devel
 BuildRequires: intltool
 BuildRequires: dbus-devel
