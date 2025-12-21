@@ -5,6 +5,11 @@ Summary: An interactive printed circuit board editor
 License: GPLv2
 Group:   Office
 URL:     https://pcb.sourceforge.net
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires: gtk2-devel
 BuildRequires: intltool
 BuildRequires: dbus-devel
